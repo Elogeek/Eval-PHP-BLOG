@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width:100%;
+    margin: auto;
+    padding: 5px;
+    font-family: 'Indie Flower', cursive;
+}
+
+#container {
+    display: flex;
+}
+
+#logo {
+    width: 12rem;
+}
+
+#info {
+    background-color: black;
+    height: 34rem;
+    width: 34rem;
+    position: fixed;
+    top:9rem;
+    left: 53rem;
+    z-index: 1000;
+}
+
+#span1 {
+    color:white;
+    top:14rem;
+    right: 47rem;
+    position:fixed;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+#p1 {
+    color:white;
+    top: 19rem;
+    position:fixed;
+    right: 33rem;
+    z-index:1000;
+    padding: 1%;
+    font-size: 15px;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+#btnInfo {
+    background-color: #d43c4c;
+    color: white;
+    width: 11rem;
+    height: 3rem;
+    left: 12rem;
+    top: 28rem;
+    position: relative;
+    border-radius: 2rem;
+    border-color: #d43c4c;
+
+}
+
+#cercle {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 7rem;
+    background: #d43c4c;
+    position: fixed;
+    top:2rem;
+    left: 80rem;
+
+}
+
+#img2 {
+    height: 537px;
+    width: 537px;
+    object-position: 100% 50%;
+    background-image: url("/assets/img/img2.jpg");
+    background-position: 50% 50%;
+    margin: -661px auto 0 81px;
+    border-radius: 50% !important;
+    background-size: cover;
+    position: absolute;
+    top: 34rem;
+    left:-29rem;
+}
+
+#img1 {
+    background-image: url("/assets/img/img1.png");
+    top: 7rem;
+    position: absolute;
+    right: 5rem;
+    background-color: purple;
+}
+
+/*responsive
+
+html {
+    font-size: 62.5%;
+}
+ */
