@@ -6,3 +6,9 @@ btn.addEventListener("click", function (e) {
     btn.appendChild(div);
     div.appendChild(forms);
 })*/
+$(".btnShare").click(function(){
+    $(".social.twitter").toggleClass("clicked");
+    $(".social.facebook").toggleClass("clicked");
+    $(".social.google").toggleClass("clicked");
+    $(".social.youtube").toggleClass("clicked");
+})

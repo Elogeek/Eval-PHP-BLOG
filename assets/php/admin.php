@@ -48,6 +48,6 @@ else {
     // Si le paramètre controller ne se trouve pas dans l'url, alors la page 'home' doit être affichée.
     // Donc on part sur le Home controller en demandant d'afficher la home page.
     $controller = new HomeController();
-    $controller->adminPage();
+   /* $controller->adminPage();*/
 }
 
