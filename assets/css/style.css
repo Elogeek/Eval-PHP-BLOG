@@ -109,15 +109,6 @@ a {
     left:-29rem;
 }
 
-#img1 {
-    background-image: url("/assets/img/img1.png");
-    top: 7rem;
-    position: absolute;
-    right: 5rem;
-    background-color: purple;
-}
-
-
 /*design page admin*/
 #right {
     float: right;
