@@ -16,8 +16,7 @@ class CommentManager {
     /**
      * Return all comments
      */
-    public function getAll(): array
-    {
+    public function getAll(): array {
         $comments = [];
         $request = DB::getInstance()->prepare("SELECT * FROM Commentaire");
         $result = $request->execute();
@@ -38,8 +37,7 @@ class CommentManager {
      * @param Comment $article
      * @return bool
      */
-    public function addComment(Comment $comment)
-    {
+    public function addComment(Comment $comment) {
         $request = DB::getInstance()->prepare("
             INSERT INTO Commentaire(content, user_fk,article_fk)
                 VALUES (:content,:userFK, :articleFK) 
@@ -51,5 +49,4 @@ class CommentManager {
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 
-    //TODO delete comment?
 }

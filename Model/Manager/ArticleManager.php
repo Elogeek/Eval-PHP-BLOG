@@ -5,7 +5,7 @@ namespace Model\Manager;
 use Model\Entity\Article;
 use Model\Entity\User;
 use  Model\Manager\Traits\ManagerTrait;
-use  Model\DB\DB;
+use  Model\DB;
 use PDO;
 use  Model\User\UserManager;
 
@@ -17,8 +17,7 @@ class ArticleManager {
     /**
      * Return all articles.
      */
-    public function getAll(): array
-    {
+    public function getAll(): array {
         $articles = [];
         $request = DB::getInstance()->prepare("SELECT * FROM Article");
         $result = $request->execute();
@@ -39,8 +38,7 @@ class ArticleManager {
      * @param Article $article
      * @return bool
      */
-    public function addArticle(Article $article)
-    {
+    public function addArticle(Article $article) {
         $request = DB::getInstance()->prepare("
             INSERT INTO article (title, content, author_fk)
                 VALUES (:title,:content, :author) 
@@ -57,7 +55,7 @@ class ArticleManager {
      * @return bool
      */
     public function deleteArticle(Article $article) {
-        $request = \DB::getInstance()->prepare("DELETE FROM Article WHERE id =''");
+        $request = \DB::getInstance()->prepare("DELETE FROM Article WHERE id ='2'");
         return $request->execute();
     }
 

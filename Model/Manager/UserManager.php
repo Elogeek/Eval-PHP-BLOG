@@ -4,7 +4,7 @@
 namespace Model\User;
 
 use PDO;
-use Model\DB\DB;
+use Model\DB;
 use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 
