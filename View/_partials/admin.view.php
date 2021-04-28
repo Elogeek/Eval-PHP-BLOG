@@ -1,7 +1,7 @@
 
-<div class="container">
+<div class="containerAdmin">
 
-    <div class="menu">
+    <div class="menuAdmin">
         <!--bar menu-->
         <i class="fas fa-ellipsis-v"></i>
         <img src="/assets/img/logo.png" alt="Mon super logo">

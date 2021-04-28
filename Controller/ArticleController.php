@@ -11,6 +11,15 @@ class ArticleController {
 
     use RenderViewTrait;
 
+    private ArticleManager $articleManager;
+    private UserManager $userManager;
+
+    public function __construct() {
+        $this->articleManager = new ArticleManager();
+        $this->userManager = new UserManager();
+    }
+
+
     /**
      * Affiche la liste des articles disponibles.
      */

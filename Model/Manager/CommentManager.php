@@ -49,4 +49,15 @@ class CommentManager {
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 
+    /** REMOVE COMMENT
+     * @param $id
+     */
+    public function removeComment($id){
+        $request = DB::getInstance()->prepare("DELETE FROM Commentaire WHERE id = :id");
+        $request->bindValue(":id", $id);
+        $request->execute();
+    }
+
+
 }
+

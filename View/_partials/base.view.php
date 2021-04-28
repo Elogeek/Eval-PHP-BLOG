@@ -11,6 +11,19 @@
 </head>
 <body>
 
+<div id="navbar">
+    <ul>
+        <li><a href="?controller=articles">Articles</a></li>
+        <li><a href="?controller=articles&action=new">New article</a></li><?php
+        if(isset($_SESSION["user"]) && !is_string($_SESSION["user"])){?>
+            <li><a href="/assets/php/disconnection.php">Deconnection</a></li><?php
+        }
+        else{?>
+            <li><a href="?">Connexion</a></li><?php
+        }
+        ?>
+    </ul>
+</div>
 <div id="container">
 
     <div>
@@ -24,10 +37,14 @@
        </p
     </div>
 
-    <div id='btnAddArticle'>
-        <!--add a here-->
-        <button type="submit"> Ajouter un article </button>
+    <!--article-->
+    <div class="article">
+        <div id='btnAddArticle'>
+            <!--add a here-->
+            <button type="submit" id="addArticle"> Ajouter un article </button>
+        </div>
     </div>
+    <!--design image-->
     <div id="img2"></div>
     <div id="img3"></div>
     <div id="img4"></div>
@@ -39,7 +56,7 @@
         <button type="submit" id="btnComment"> Envoyer !</button>
     </div>
 
-    <!--btn share-->
+    <!--animation btn share-->
     <div class="containerShare">
         <div class="btnShare">Share</div>
         <div class="social twitter"><i class="fa fa-twitter"></i></div>

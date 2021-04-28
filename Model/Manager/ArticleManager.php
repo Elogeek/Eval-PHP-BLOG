@@ -54,9 +54,22 @@ class ArticleManager {
      * @param Article $article
      * @return bool
      */
-    public function deleteArticle(Article $article) {
-        $request = \DB::getInstance()->prepare("DELETE FROM Article WHERE id ='2'");
+    public function deleteArticle($id) {
+        $request = \DB::getInstance()->prepare("DELETE FROM Article WHERE id = :id");
+        $request->bindValue(":id", $id);
         return $request->execute();
     }
+
+    /** Edit an article
+     * @param $id
+     * @param $content
+     */
+    public function editArticle($id, $content){
+        $request = \DB::getInstance()->prepare("UPDATE article SET content = :content WHERE id = :id");
+        $request->bindValue(":content", DB::secureData($content));
+        $request->bindValue(":id", $id);
+        $request->execute();
+    }
+
 
 }
