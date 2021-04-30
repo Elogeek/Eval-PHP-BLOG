@@ -13,4 +13,3 @@
         }
     } ?>
 </div>
-<script src="/assets/js/article.js"></script>

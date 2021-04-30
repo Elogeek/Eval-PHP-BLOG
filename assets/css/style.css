@@ -96,8 +96,8 @@ a {
     height: 14rem;
     border-radius: 7rem;
     background: #d43c4c;
-    position: sticky;
-    top:2rem;
+    position: relative;
+    top: 9rem;
     left: 80rem;
 }
 
@@ -274,6 +274,22 @@ a {
 #left:hover {
     background-color: #d43c4c;
 }
+
+#btnConnect {
+    background-color: #d43c4c;
+    color: white;
+    position: relative;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 25px;
+    border-color: #d43c4c;
+    font-size: 20px;
+    font-weight: bold;
+    bottom: 132rem;
+    left: 39rem;
+    text-align: center;
+}
+
 
 /*responsive
 

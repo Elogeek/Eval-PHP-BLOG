@@ -11,19 +11,6 @@
 </head>
 <body>
 
-<div id="navbar">
-    <ul>
-        <li><a href="?controller=articles">Articles</a></li>
-        <li><a href="?controller=articles&action=new">New article</a></li><?php
-        if(isset($_SESSION["user"]) && !is_string($_SESSION["user"])){?>
-            <li><a href="/assets/php/disconnection.php">Deconnection</a></li><?php
-        }
-        else{?>
-            <li><a href="?">Connexion</a></li><?php
-        }
-        ?>
-    </ul>
-</div>
 <div id="container">
 
     <div>
@@ -75,7 +62,8 @@
         </defs>
     </svg>
 
-</div>
+    <button type="submit" id="btnConnect"> <i class="fas fa-user"></i></button>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/assets/js/app.js"></script>
 </body>
