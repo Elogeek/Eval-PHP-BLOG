@@ -7,10 +7,10 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Manager/UserManager.php';
 
 use Model\Manager\UserManager;
 
-if(isset($_POST,$_POST["name"], $_POST["password"])) {
-    $name = DB::secureData($_POST["name"]);
+if(isset($_POST,$_POST["email"], $_POST["password"])) {
+    $name = DB::secureData($_POST["email"]);
     if(strlen($_POST["password"]) < 1){
-        header("Location: index.php?error=mauvaise information d'inscription&color=red");
+        header("Location: index.php?error=mauvaise information d'inscription&color=darkred");
         exit;
     }
 
@@ -22,5 +22,5 @@ if(isset($_POST,$_POST["name"], $_POST["password"])) {
 }
 else
     {
-    header("Location: index.php?error=mauvaise information d'inscription&color=red");
+    header("Location: index.php?error=mauvaise information d'inscription&color=darkred");
 }

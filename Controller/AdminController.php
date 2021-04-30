@@ -14,15 +14,18 @@ class AdminController {
         if(isset($_SESSION['admin'])) {
             $admin = $_SESSION['admin']= $_SESSION['id']= 1;
             $this->adminPage();
-        }
-        $user = 'Anonymous';
-        if(isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
-        }
+            session_start();
+            $this->render('admin', 'Mon espace super admin');
+                }
 
-        $this->render('home', 'Mon blog', [
-            'user' => $user,
-        ]);
+            //si c'est un user et qu'il est plus grand que 1 alors ===> retour à l'accueil du blog
+            $user = 'Anonymous';
+            if(isset($_SESSION['user'] && !isset($_SESSION['user']) > 1)) {
+                $user = $_SESSION['user'];
+            }
+            $this->render('home', 'Mon blog', [
+                'user' => $user,
+            ]);
     }
 
 }

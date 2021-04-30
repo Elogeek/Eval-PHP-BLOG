@@ -11,7 +11,7 @@ if(isset($_POST)) {
         http_response_code(400);
         die();
     }
-    list($result, $idUser) = (new user()->isValidCredentials($_POST['email'],$_POST['password']);
+    list($result, $idUser) = (new user()->checkPassword($_POST['email'],$_POST['password']);
     if($result) {
         $_SESSION['id-user'] = $idUser;
         http_response_code(200);
@@ -22,3 +22,10 @@ if(isset($_POST)) {
 
 http_response_code(401);
 die();
+
+/*
+ * verifie dans la BDD, si le password user (taper dans le form) est le même que dans la BDD
+ * vérifie aussi que soit le mail soit le pseudo est le même (ainsi que email/pseudo)
+ */function checkPassword() {
+
+}
