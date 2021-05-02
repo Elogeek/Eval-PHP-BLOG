@@ -184,8 +184,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 40px;
+    width: 17rem;
+    height: 3rem;
     background-color: #d43c4c;
     border-radius: 20px;
     color: #FFF;
@@ -195,6 +195,11 @@ a {
     font-family: cursive;
     bottom: 122rem;
     left: 47rem;
+
+    /* taille petit pc
+    bottom: 106rem;
+    left: 33rem;
+    */
 }
 
 .social {
@@ -221,28 +226,28 @@ a {
 .twitter {
     background: #00aced;
     position: absolute;
-    bottom: 120rem;
+    bottom: 121rem;
     left: 48rem;
 }
 
 .facebook {
     background: #3b5998;
     position: absolute;
-    bottom: 120rem;
+    bottom: 121rem;
     left: 52rem;
 }
 
 .google {
     background: #dd4b39;
     position: absolute;
-    bottom: 120rem;
+    bottom: 121rem;
     left: 56rem;
 }
 
 .youtube {
     background: #bb0000;
     position: absolute;
-    bottom: 120rem;
+    bottom: 121rem;
     left: 60rem;
 }
 
@@ -252,11 +257,26 @@ a {
     transform: translateY(56px);
 }
 
+#btnConnect {
+    background-color: #d43c4c;
+    color: white;
+    position: relative;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 25px;
+    border-color: #d43c4c;
+    font-size: 20px;
+    font-weight: bold;
+    bottom: 132rem;
+    left: 39rem;
+    text-align: center;
+}
+
 /*design page admin*/
 .containerAdmin {
     width: 100%;
     font-family: cursive;
- }
+}
 
 #right {
     float: right;
@@ -275,25 +295,86 @@ a {
     background-color: #d43c4c;
 }
 
-#btnConnect {
-    background-color: #d43c4c;
-    color: white;
-    position: relative;
-    width: 5rem;
-    height: 2.5rem;
-    border-radius: 25px;
-    border-color: #d43c4c;
-    font-size: 20px;
-    font-weight: bold;
-    bottom: 132rem;
-    left: 39rem;
-    text-align: center;
+/*responsive*/
+@media screen and (max-width: 1000px) {
+
+    html {
+        font-size: 62.5%;
+    }
+
+    #img2 {
+        height: 369px;
+        width: 369px;
+        top: 54rem;
+        left: -34rem;
+    }
+
+    #cercle {
+        width: 14rem;
+        height: 14rem;
+        top: 12rem;
+        left: 76rem;
+    }
+
+    #img3,#img4,#img5 {
+        display: none;
+    }
+
+    #div1 {
+        height: 37rem;
+        width: 37rem;
+        top: 19rem;
+        left: 45rem;
+    }
+
+    a {
+        bottom: 14rem;
+        width: 18rem;
+        height: 4rem;
+        font-size: 13px;
+    }
+
+    #btnAddArticle button {
+        height: 4rem;
+        bottom: 11rem;
+    }
+
+    span {
+        font-size: 30px;
+    }
+
+    #btnComment {
+        width: 10rem;
+        height: 4rem;
+        top: 2rem;
+    }
+
+    /*animation btn share*/
+    #btnShare {
+        width: 21rem;
+        height: 4rem;
+        bottom: 133rem;
+        left: 31rem;
+    }
+
+    .twitter {
+        bottom: 132rem;
+        left: 29rem;
+    }
+
+    .facebook {
+        bottom: 132rem;
+        left: 35rem;
+    }
+
+    .google {
+        bottom: 132rem;
+        left: 41rem;
+    }
+
+    .youtube {
+        bottom: 132rem;
+        left: 47rem;
+    }
+
 }
-
-
-/*responsive
-
-html {
-    font-size: 62.5%;
-}
- */

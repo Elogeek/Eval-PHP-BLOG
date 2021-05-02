@@ -13,7 +13,6 @@ require_once './Model/Manager/CommentManager.php';
 
 require_once './Controller/HomeController.php';
 require_once './Controller/ArticleController.php';
-require_once './Controller/CommentController.php';
 
 require_once './assets/php/admin.php';
 require_once  './assets/php/connect.php';

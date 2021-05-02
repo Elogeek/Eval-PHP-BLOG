@@ -11,7 +11,7 @@ $(".btnShare").click(function(){
  function getComment() {
      let xhr = new XMLHttpRequest();
      xhr.withCredentials = true;
-     xhr.open('POST',`${this.api.comment}/connect.php`);
+     xhr.open('POST',`${this}/connect.php`);
      let form = new FromData();
      form.append('session', this.session);
      xhr.send(form);
@@ -40,16 +40,16 @@ function login() {
     let form = new FormData();
 
     //password will be sent in https context out of local use
-    if(password.value.length > 0 && emal.value.length > 0) {
+    if(password.value.length > 0 && email.value.length > 0) {
         form.append('email', email.value);
         form.append('password', password.value);
-        xhr.open('POST', `${this.apiBaseUrl}/login.php`);
+        xhr.open('POST', `${this}/login.php`);
         xhr.send(form);
     }
 
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            //storing sesssion
+            //storing session
             this.session = JSON.parse(xhr.responseText).session;
             //start comments get timer
             window.setInterval(()=>getComment(),3000)

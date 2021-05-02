@@ -2,8 +2,8 @@
 
 namespace Model\Manager;
 
-use Model\Entity\Article;
-use Model\Entity\User;
+use \Model\Entity\Article;
+use \Model\Entity\User;
 use  Model\Manager\Traits\ManagerTrait;
 use  Model\DB;
 use PDO;
