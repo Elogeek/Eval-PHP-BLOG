@@ -22,7 +22,8 @@ body {
 #logo {
     width: 12rem;
     top: 1rem;
-    position: absolute;
+    display: flex;
+    justify-content: flex-start;
 }
 
 #div1 {
@@ -30,20 +31,25 @@ body {
     height: 34rem;
     width: 34rem;
     position: absolute;
-    top:16rem;
+    top: 16rem;
     left: 53rem;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
 /*here welcome*/
 h1 {
     color:white;
     padding: 31%;
-    top: -10rem;
     position: relative;
-    left: 4rem;
     letter-spacing: 2px;
+    bottom: 8rem;
+    left: 3rem;
+    display: flex;
+    flex-flow: row;
 }
+
 /*name user*/
 span {
     color: white;
@@ -96,7 +102,7 @@ a {
     height: 14rem;
     border-radius: 7rem;
     background: #d43c4c;
-    position: relative;
+    position: absolute;
     top: 9rem;
     left: 80rem;
 }
@@ -296,7 +302,7 @@ a {
 }
 
 /*responsive*/
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1500px) {
 
     html {
         font-size: 62.5%;
@@ -314,10 +320,6 @@ a {
         height: 14rem;
         top: 12rem;
         left: 76rem;
-    }
-
-    #img3,#img4,#img5 {
-        display: none;
     }
 
     #div1 {
@@ -349,32 +351,67 @@ a {
         top: 2rem;
     }
 
-    /*animation btn share*/
-    #btnShare {
-        width: 21rem;
+    /*animation btn share and imgs*/
+    #btnShare, .twitter,.facebook,.facebook,.youtube, #img3,#img4,#img5    {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+
+    #cercle {
+        width: 14rem;
+        height: 14rem;
+        top: 11rem;
+        left: 11rem;
+    }
+
+    #btnShare, .twitter,.facebook,.facebook,.youtube, #img2,#img3,#img4,#img5 {
+        display: none;
+    }
+
+    #div1 {
+        height: 32rem;
+        width: 27rem;
+        top: 16rem;
+        left: 1rem;
+        padding: 1%;
+    }
+
+    h1 {
+        top: -10rem;
+        left: 4rem;
+    }
+
+    span {
+        font-size: 24px;
+        display: flex;
+        justify-content: flex-start;
+        top: -11rem;
+        left: 4rem;
+    }
+
+    a {
+        bottom: 4rem;
+        width: 12rem;
         height: 4rem;
-        bottom: 133rem;
-        left: 31rem;
+        font-size: 11px;
+        left: 13rem;
+        top: -6rem;
     }
 
-    .twitter {
-        bottom: 132rem;
-        left: 29rem;
+    #btnAddArticle button {
+        height: 4rem;
+        display: flex;
+        flex-direction: row;
+        left: 1rem;
+        bottom: 10rem;
     }
 
-    .facebook {
-        bottom: 132rem;
-        left: 35rem;
-    }
-
-    .google {
-        bottom: 132rem;
-        left: 41rem;
-    }
-
-    .youtube {
-        bottom: 132rem;
-        left: 47rem;
+    textarea {
+        column-span: 22;
+        row-span: 3;
     }
 
 }
