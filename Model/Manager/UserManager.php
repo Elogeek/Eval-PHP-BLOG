@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Model\User;
 
-use PDO;
 use Model\DB;
 use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
+use Model\Manager\RoleManager;
 
 require_once 'include.php';
 
@@ -15,61 +14,63 @@ class UserManager {
     use ManagerTrait;
 
     /**
-     * Return one user via son id.
+     * Return an User by his id
      * @param int $id
      * @return User
      */
-    public function getById(int $id): User {
-        $user = new User();
-        $request = DB::getInstance()->prepare("SELECT id, name FROM user WHERE id = :id");
-        $request->bindValue(':id', $id);
+    public function getById(int $id): ?User {
+        $user = null;
+        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE id = :user_fk");
+        $request->bindValue(':user_fk', $id);
         $result = $request->execute();
-        if ($result) {
+
+        if($result) {
             $user_data = $request->fetch();
-            if ($user_data) {
-                $user->setId($user_data['id']);
-                $user->setPassword('');
-                $user->setName($user_data['name']);
+            if($user_data) {
+                $role = RoleManager::getManager()->get($user_data['role_fk']);
+                $user = new User($user_data['username'], $user_data['password'], $user_data['id'], $user_data['mail'], $role);
             }
         }
+
         return $user;
     }
 
     /**
-     * Return all users
-     * @return array
+     * Return an User by his user name or null
+     * @param string $email
+     * @return User|null
      */
-    public function getUsers(): array {
-        $users = [];
-        $request = DB::getInstance()->prepare("SELECT * FROM User");
-        $request->execute();
+    public function existEmail(string $email): ?User {
+        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE email = :email");
+        $request->bindValue(':email', $email);
+        $result = $request->execute();
+        $user = null;
 
-        if ($users_response = $request->fetchAll()) {
-            foreach ($users_response as $data) {
-                $users[] = new User($data['id'], $data['name'], $data['pseudo'], $data['password'], $data['role_fk']);
-            }
+        if($result && $data = $request->fetch()) {
+            $role = RoleManager::getManager()->get($data['role_fk']);
+            $user = new User($data['id'],$data['name'], $data['pseudo'],$data['email'],$data['password'],$role);
         }
-        return $users;
+
+        return $user;
     }
 
-    /** Add user in the DTB
+    /**
+     * Add an user into table user
      * @param User $user
      * @return bool
      */
-    public function addUser(User $user) {
-        $request = DB::getInstance()->prepare('
-            INSERT INTO User(name,pseudo,email,password,role_fk)
-                VALUES(:name,:pseudo,:email,:password,:role_fk)
-        ');
-        $request->bindValue(':name', $user->getTitle());
-        $request->bindValue(':pseudo', $user->getPseudo());
-        $request->bindValue(':email', $user->getEmail());
-        $request->bindValue(':password', $user->getPassword());
-        $request->bindValue(':role', $user->getRole());
+    public function addUser(User $user): bool {
+        $request = DB::getInstance()->prepare("INSERT INTO user (name, pseudo, email, password, role_fk) VALUES (:name,:pseudo, :email, :password, :role)");
+
+        $request->bindValue(":username", $user->getUsername());
+        $request->bindValue(":pseudo", $user->getPseudo());
+        $request->bindValue(":mail", $user->getMail());
+        $request->bindValue(":password", password_hash($user->getPassword(), PASSWORD_BCRYPT));
+        $request->bindValue(":role", $user->getRole()->getId());
 
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
-
 }
+
 
 

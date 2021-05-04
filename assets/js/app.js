@@ -43,7 +43,7 @@ function login() {
     if(password.value.length > 0 && email.value.length > 0) {
         form.append('email', email.value);
         form.append('password', password.value);
-        xhr.open('POST', `${this}/login.php`);
+        xhr.open('POST', `${this}/register.php`);
         xhr.send(form);
     }
 

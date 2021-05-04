@@ -20,7 +20,7 @@ class AdminController {
 
             //si c'est un user et qu'il est plus grand que 1 alors ===> retour à l'accueil du blog
             $user = 'Anonymous';
-            if(isset($_SESSION['user'] && !isset($_SESSION['user']) > 1)) {
+            if($_SESSION['user'] && !isset($_SESSION['user']) > 1 !== null) {
                 $user = $_SESSION['user'];
             }
             $this->render('home', 'Mon blog', [

@@ -2,18 +2,18 @@
 
 namespace Model\Manager\Traits;
 
-use Model\DB;
-use PDO;
-
 trait ManagerTrait {
 
-    private ?PDO $db;
+    private static $manager = null;
 
     /**
-     * ArticleManager constructor.
+     * Return manager or new manager
+     * @return self
      */
-    public function __construct()
-    {
-        $this->db = DB::getInstance();
+    public static function getManager(): self {
+        if(is_null(self::$manager)) {
+            self::$manager = new self();
+        }
+        return self::$manager;
     }
 }

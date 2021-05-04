@@ -2,62 +2,95 @@
 
 namespace Model\Manager;
 
-
-use App\Entity\Comment;
-use Model\Entity\Article;
-use Model\Entity\User;
 use Model\Manager\Traits\ManagerTrait;
 use Model\DB;
+use Model\Entity\Comment;
 use Model\User\UserManager;
 
-class CommentManager {
-    use ManagerTrait;
+class CommentaryManager {
+use ManagerTrait;
 
     /**
-     * Return all comments
+     * Get all comment of an article
+     * @param $article_fk
+     * @return array
      */
-    public function getAll(): array {
-        $comments = [];
-        $request = DB::getInstance()->prepare("SELECT * FROM Commentaire");
+    public function getAll($article_fk): array {
+        $commentaries = [];
+
+        $request = DB::getInstance()->prepare("SELECT * FROM commentaire WHERE article_fk = :article_fk");
+        $request->bindValue(':article_fk', $article_fk);
         $result = $request->execute();
-        if ($result) {
-            $data = $request->fetchAll();
-            foreach ($data as $comment_data) {
-                $user = UserManager::getManager()->getById($comment_data['user_fk']);
-                if ($user->getId()) {
-                    $comments[] = new Comment($comment_data['id'],$comment_data['content'],$comment_data['user_fk'],$comment_data['author']);
-                }
+
+        if ($result && $data = $request->fetchAll()) {
+            foreach ($data as $comment) {
+                $user = UserManager::getManager()->getById($comment['user_fk']);
+                $article = ArticleManager::getManager()->get($comment['article_fk']);
+                $commentaries [] = new Comment($comment['id'], $comment['content'], $user, $article);
             }
         }
-        return $comments;
+        return $commentaries;
     }
 
     /**
-     * Add a comment  in  the DTB.
-     * @param Comment $article
+     * Get a comment by id
+     * @param $id
+     * @return Comment|null
+     */
+    public function get($id): ?Comment {
+        $request = DB::getInstance()->prepare("SELECT * FROM commentaire WHERE id = :id");
+        $request->bindValue(':id', $id);
+        $result = $request->execute();
+        $comment = null;
+
+        if ($result && $data = $request->fetch()) {
+            $user = UserManager::getManager()->getById($data['user_fk']);
+            $article = ArticleManager::getManager()->get($data['article_fk']);
+            $comment = new Comment($comment['id'], $comment['content'], $user, $article);
+
+        }
+
+        return $comment;
+    }
+
+    /** Add a comment into the table commentaire
+     * @param Comment $comment
      * @return bool
      */
-    public function addComment(Comment $comment) {
-        $request = DB::getInstance()->prepare("
-            INSERT INTO Commentaire(content, user_fk,article_fk)
-                VALUES (:content,:userFK, :articleFK) 
-        ");
-
-        $request->bindValue(':content', $comment->getContent());
-        $request->bindValue(':ufk', $comment->getUser()->getId());
+    public function add(Comment $comment): bool
+    {
+        $request = DB::getInstance()->prepare("INSERT INTO commentaire(content, user_fk, article_fk) VALUES (:content, :user_fk, :article_fk)");
+        $request->bindValue(":content", $comment->getContent());
+        $request->bindValue(":user_fk", $comment->getUserFk()->getId());
+        $request->bindValue("article_fk", $comment->getArticleFk()->getId());
 
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 
-    /** REMOVE COMMENT
-     * @param $id
+    /**
+     * Update a comment into the table commentaire
+     * @param Comment $comment
+     * @return bool
      */
-    public function removeComment($id){
-        $request = DB::getInstance()->prepare("DELETE FROM Commentaire WHERE id = :id");
-        $request->bindValue(":id", $id);
-        $request->execute();
+    public function update(Comment $comment): bool
+    {
+        $request = DB::getInstance()->prepare("UPDATE commentaire SET content = :content WHERE id = :id");
+        $request->bindValue(":content", $comment->getContent());
+        $request->bindValue(":id", $comment->getId());
+
+        return $request->execute();
     }
 
+    /**
+     * Delete a comment into the table commentaire
+     * @param Comment $comment
+     * @return bool
+     */
+    public function delete(Comment $comment): bool
+    {
+        $request = DB::getInstance()->prepare("DELETE FROM commentaire WHERE id = :id");
+        $request->bindValue(":id", $comment->getId());
 
+        return $request->execute();
+    }
 }
-

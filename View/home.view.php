@@ -4,3 +4,4 @@
 <div>
     <a href="/index.php?controller=articles">Consulter la liste de nos articles</a>
 </div>
+

@@ -34,18 +34,29 @@ class DB
     }
 
     /** My homemade function :)
+     * Return string to have secure data to insert into the database.
      * the secureData fct returns secure data and insert it into the database.
      * @param $data
      * @return string
      */
 
     public static function secureData($data): string {
-        $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         $data = strip_tags($data);
         $data = addslashes($data);
-        return trim(intval($data)) ;
+        return trim($data);
+    }
+
+    /**
+     * Encode a given plain password
+     * @param $plainPassword
+     * @return string
+     */
+    public static function encodePassword($plainPassword): string {
+        // Encoding password.
+        $password = self::secureData($plainPassword);
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
     /**

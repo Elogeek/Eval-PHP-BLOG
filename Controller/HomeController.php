@@ -1,23 +1,29 @@
 <?php
+
 namespace Controller;
 
 use Controller\Traits\RenderViewTrait;
+use Model\Manager\ArticleManager;
 
-class HomeController {
+class HomeController
+{
 
     use RenderViewTrait;
 
     /**
-     * Affiche la page home.
+     * Poster home page
+     * @param int|null $error
      */
-    public function homePage() {
-        $user = 'Anonymous';
-        if(isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
+    public function homePage(?int $error = null)
+    {
+        $articles = array_reverse(ArticleManager::getManager()->getAll());
+        if (count($articles) > 3) {
+            $articles = array_slice($articles, 0, 3);
         }
 
-        $this->render('home', 'Mon blog', [
-            'user' => $user,
+        $this->render('home', 'Ma home page', [
+            "articles" => $articles,
+            "error" => $error
         ]);
     }
 

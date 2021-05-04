@@ -11,6 +11,13 @@ class Comment {
     private ?int $userFk;
     private ?int $articleFK;
 
+    /**
+     * Comment constructor.
+     * @param int|null $id
+     * @param string|null $content
+     * @param int|null $userFk
+     * @param int|null $articleFK
+     */
     public function __construct(int $id=null, string $content = null, int $userFk = null, int $articleFK = null) {
         $this->id = $id;
         $this->content = $content;
@@ -45,9 +52,9 @@ class Comment {
     /**
      * @param string|null $content
      */
-    public function setContent(?string $content): void
-    {
+    public function setContent(?string $content): Comment {
         $this->content = $content;
+        return  $this;
     }
 
     /**
@@ -61,25 +68,26 @@ class Comment {
     /**
      * @param int|null $userFk
      */
-    public function setUserFk(?int $userFk): void
-    {
+    public function setUserFk(?int $userFk): ?User {
         $this->userFk = $userFk;
+        return $this->userFk;
     }
 
     /**
-     * @return int|null
+     *
+     * @return Article|null
      */
-    public function getArticleFK(): ?int
-    {
-        return $this->articleFK;
+    public function getArticleFk(): ?Article {
+        return $this->$articleFk;
     }
 
     /**
-     * @param int|null $articleFK
+     * @param Article|null $article_fk
+     * @return Comment
      */
-    public function setArticleFK(?int $articleFK): void
-    {
-        $this->articleFK = $articleFK;
+    public function setArticleFk(?Article $articleFk): Comment {
+        $this->articleFk = $articlefk;
+        return $this;
     }
 
 }

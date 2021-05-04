@@ -14,7 +14,7 @@ require_once './Model/Manager/CommentManager.php';
 require_once './Controller/HomeController.php';
 require_once './Controller/ArticleController.php';
 
-require_once './assets/php/admin.php';
-require_once  './assets/php/connect.php';
-require_once './assets/php/disconnection.php';
-require_once './assets/php/signUp.php';
+require_once './php/admin.php';
+require_once './php/connect.php';
+require_once './php/disconnection.php';
+require_once './php/register.php';

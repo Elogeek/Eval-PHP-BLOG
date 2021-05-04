@@ -3,6 +3,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/DB.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Manager/Traits/ManagerTrait.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Entity/User.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/Model/Manager/UserManager.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/include.php';
 
 session_start();
 

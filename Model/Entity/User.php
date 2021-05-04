@@ -1,6 +1,8 @@
 <?php
 namespace App\Entity ;
 
+use Model\Entity\Role;
+
 class User {
 
     private ?int $id;
@@ -10,6 +12,15 @@ class User {
     private ?string  $password;
     private ?int $role;
 
+    /**
+     * User constructor.
+     * @param int|null $id
+     * @param string|null $name
+     * @param string|null $pseudo
+     * @param string|null $email
+     * @param string|null $password
+     * @param int|null $role
+     */
     public function __construct(int $id = null, string $name = null, string $pseudo = null, string $email = null, string $password = null, int $role = null) {
         $this->id = $id;
         $this->name = $name;
@@ -46,9 +57,9 @@ class User {
     /**
      * @param string|null $name
      */
-    public function setName(?string $name): void
-    {
+    public function setName(?string $name): User {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -62,9 +73,9 @@ class User {
     /**
      * @param string|null $pseudo
      */
-    public function setPseudo(?string $pseudo): void
-    {
+    public function setPseudo(?string $pseudo): User {
         $this->pseudo = $pseudo;
+        return $this;
     }
 
     /**
@@ -78,9 +89,9 @@ class User {
     /**
      * @param string|null $email
      */
-    public function setEmail(?string $email): void
-    {
+    public function setEmail(?string $email): User {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -94,16 +105,15 @@ class User {
     /**
      * @param string|null $password
      */
-    public function setPassword(?string $password): void
-    {
+    public function setPassword(?string $password): User {
         $this->password = $password;
+        return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getRole(): ?int
-    {
+    public function getRole(): Role {
         return $this->role;
     }
 
