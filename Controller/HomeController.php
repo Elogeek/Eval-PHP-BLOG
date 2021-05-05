@@ -23,7 +23,8 @@ class HomeController
 
         $this->render('home', 'Ma home page', [
             "articles" => $articles,
-            "error" => $error
+            "error" => $error,
+            "page"=> $_GET['ctrl']
         ]);
     }
 

@@ -18,7 +18,7 @@ require_once './Model/Manager/RoleManager.php';
 require_once './Controller/HomeController.php';
 require_once './Controller/ArticleController.php';
 require_once './Controller/UserController.php';
-require_once './Controller/CommentController.php';
+
 
 use Controller\CommentController;
 use Controller\HomeController;
@@ -81,7 +81,7 @@ if(isset($_GET['controller'])) {
                         break;
 
                     case 'logout':
-                        $controller->logout();
+                        $controller->disconnect();
                         break;
 
                     default:

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Controller;
 
 use Controller\Traits\RenderViewTrait;
@@ -15,7 +14,7 @@ class ArticleController
     use RenderViewTrait;
 
     /**
-     * Poster home page with all article
+     *  all article
      */
     public function articles()
     {
@@ -28,17 +27,15 @@ class ArticleController
     }
 
     /**
-     * Poster create article page and add an article into table article
+     *  add an article into DBB
      */
     public function addArticle()
     {
-        if (isset($_POST['content'], $_POST['subTitle'], $_POST['title'], $_POST['resume'])) {
+        if (isset( $_POST['title'],$_POST['content'])) {
             $articleManager = new ArticleManager();
 
-            $content = htmlentities($_POST['content']);
             $title = htmlentities($_POST['title']);
-            $subTitle = htmlentities($_POST['subTitle']);
-            $resume = htmlentities($_POST['resume']);
+            $content = htmlentities($_POST['content']);
 
             $article = new Article();
             $article->setContent($content)->setTitle($userFk);
@@ -66,45 +63,7 @@ class ArticleController
     }
 
     /**
-     * Poster update article or articles page and update article choice
-     * @param int|null $id
-     */
-    public function updateArticle(?int $id = null)
-    {
-        if (isset($_POST['content'], $_POST['user_fk'])) {
-            $articleManager = new ArticleManager();
-
-            $content = htmlentities($_POST['content']);
-            $user = htmlentities($_POST['user_fk']);
-
-
-            $article = ArticleManager::getManager()->get($id);
-            $article->setContent($content)->setUserFk($user);
-            $controller = new HomeController();
-
-            if ($articleManager->update($article)) {
-                $controller->homePage(7);
-            } else {
-                $controller->homePage(3);
-            }
-
-        } elseif ($id != null) {
-            $article = ArticleManager::getManager()->get($id);
-            $this->render('update.article', 'Modifier un article', [
-                'article' => $article,
-            ]);
-        } else {
-            $manager = new ArticleManager();
-            $articles = $manager->getAll();
-
-            $this->render('update.articles', 'Modifier un article', [
-                'articles' => $articles,
-            ]);
-        }
-    }
-
-    /**
-     * Poster home page and delete an article
+     * delete an article
      */
     public function deleteArticle()
     {
@@ -113,12 +72,12 @@ class ArticleController
         if (isset($_GET['article'])) {
             $article = ArticleManager::getManager()->get($_GET['article']);
             if (ArticleManager::getManager()->delete($article)) {
-                $controller->homePage(8);
+                $controller->homePage($vars);
             } else {
-                $controller->homePage(3);
+                $controller->homePage($vars);
             }
         } else {
-            $controller->homePage(3);
+            $controller->homePage($vars);
         }
     }
 }

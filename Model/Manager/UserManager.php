@@ -20,7 +20,7 @@ class UserManager {
      */
     public function getById(int $id): ?User {
         $user = null;
-        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE id = :user_fk");
+        $request = DB::getInstance()->prepare("SELECT * FROM User WHERE id = :user_fk");
         $request->bindValue(':user_fk', $id);
         $result = $request->execute();
 
@@ -41,7 +41,7 @@ class UserManager {
      * @return User|null
      */
     public function existEmail(string $email): ?User {
-        $request = DB::getInstance()->prepare("SELECT * FROM user WHERE email = :email");
+        $request = DB::getInstance()->prepare("SELECT * FROM User WHERE email = :email");
         $request->bindValue(':email', $email);
         $result = $request->execute();
         $user = null;
@@ -59,8 +59,8 @@ class UserManager {
      * @param User $user
      * @return bool
      */
-    public function addUser(User $user): bool {
-        $request = DB::getInstance()->prepare("INSERT INTO user (name, pseudo, email, password, role_fk) VALUES (:name,:pseudo, :email, :password, :role)");
+    public function add(User $user): bool {
+        $request = DB::getInstance()->prepare("INSERT INTO User (name, pseudo, email, password, role_fk) VALUES (:name,:pseudo, :email, :password, :role)");
 
         $request->bindValue(":username", $user->getUsername());
         $request->bindValue(":pseudo", $user->getPseudo());

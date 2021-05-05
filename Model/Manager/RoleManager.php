@@ -41,7 +41,7 @@ class RoleManager {
      * @return bool
      */
     public static function isDeletable(string $roleName): bool {
-        return !in_array($roleName, ['admin', 'user']);
+        return !in_array($roleName, ['admin']);
     }
 
     /**

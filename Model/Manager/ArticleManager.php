@@ -2,9 +2,9 @@
 
 namespace Model\Manager;
 
-use Model\Entity\Article;
+use App\Entity\Article;
+use DB;
 use Model\Manager\Traits\ManagerTrait;
-use Model\DB;
 
 require_once 'include.php';
 
@@ -16,7 +16,7 @@ class ArticleManager {
      */
     public function getAll(): array {
         $articles = [];
-        $request = DB::getInstance()->prepare("SELECT * FROM article");
+        $request = DB::getInstance()->prepare("SELECT * FROM Article");
         $result = $request->execute();
         if($result) {
             $data = $request->fetchAll();
@@ -33,13 +33,13 @@ class ArticleManager {
      * @return Article
      */
     public function get($id): ?Article {
-        $request = DB::getInstance()->prepare("SELECT * FROM article WHERE id = :id");
+        $request = DB::getInstance()->prepare("SELECT * FROM Article WHERE id = :id");
         $request->bindValue(':id', $id);
         $result = $request->execute();
         $article = null;
 
         if($result && $data = $request->fetch()) {
-            $article = new Article($article_data['id'],$article_data['title'], $article_data['content'], $article_data['author_fk']);
+            $article = new Article($data['id'],$data['title'], $data['content'], $data['author_fk']);
         }
 
         return $article;
@@ -52,7 +52,7 @@ class ArticleManager {
      */
     public function add(Article $article): bool {
         $request = DB::getInstance()->prepare("
-            INSERT INTO article (title,content, author_fk)
+            INSERT INTO Article (title,content, author_fk)
                 VALUES (:title, :content, :author) 
         ");
         $request->bindValue(':title', $article->getTitle());
@@ -68,7 +68,7 @@ class ArticleManager {
      * @return bool
      */
     public function update(Article $article): bool {
-        $request = DB::getInstance()->prepare("UPDATE article SET content = :content,title = :title, author_fk = :author WHERE id = :id");
+        $request = DB::getInstance()->prepare("UPDATE Article SET content = :content,title = :title, author_fk = :author WHERE id = :id");
         $request->bindValue(':id', $article->getId());
         $request->bindValue(':title', $article->getTitle());
         $request->bindValue(':content', $article->getContent());
@@ -83,7 +83,7 @@ class ArticleManager {
      * @return bool
      */
     public function delete(Article $article): bool {
-        $request = DB::getInstance()->prepare("DELETE FROM article WHERE id = :id");
+        $request = DB::getInstance()->prepare("DELETE FROM Article WHERE id = :id");
         $request->bindValue(':id', $article->getId());
 
         return $request->execute();
