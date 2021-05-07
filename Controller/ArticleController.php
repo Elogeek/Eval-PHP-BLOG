@@ -80,4 +80,5 @@ class ArticleController
             $controller->homePage($vars);
         }
     }
+
 }

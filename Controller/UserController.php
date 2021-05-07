@@ -29,11 +29,13 @@ class UserController {
                 }
                 else {
                     $this->render('connection', 'Connexion', [
-                       'page'=> $vars ['page']]
-                    );
+                       'page'=> "connection",
+                    ]);
                 }
             }
-            //si il n'existe pas, alors on créer le compte
+
+             // si il n'existe pas, alors on créer le compte
+
             if(isset($_POST['username'], $_POST['password'], $_POST['mail'])) {
                 $name = \DB::secureData($_POST['name']);
                 $pseudo = \DB::secureData($_POST['pseudo']);
@@ -42,7 +44,7 @@ class UserController {
 
                 if (!\DB::encodePassword($password)) {
                     $this->render('register', 'Création de compte', [
-                        'page' =>  $vars["page"],
+                        'page' =>  "register",
                     ]);
                 } elseif (UserManager::getManager()->existEmail($email) != null) {
                     $this->render('register', 'Création de compte', [
@@ -59,6 +61,26 @@ class UserController {
             }
         }
     }
+
+    /**
+     * Affiche la page de connexion.
+     */
+    public function connexionPage() {
+        $user = 'Anonymous';
+        $var = [];
+        if(isset($_GET["error"])) {
+            if(isset($_GET["color"])){
+                $color = $_GET["color"];
+            }
+            else{
+                $color = "red";
+            }
+            $var = ["error" => $_GET["error"], "color" => $color];
+        }
+
+        $this->render('connexion', 'Connexion', $var);
+    }
+
 
 
 

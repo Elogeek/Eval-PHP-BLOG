@@ -9,7 +9,7 @@ class Comment {
     private ?int $id;
     private ?string $content;
     private ?int $userFk;
-    private ?int $articleFK;
+    private ?int $articleFk;
 
     /**
      * Comment constructor.
@@ -22,7 +22,7 @@ class Comment {
         $this->id = $id;
         $this->content = $content;
         $this->userFk = $userFk;
-        $this->articleFK = $articleFK;
+        $this->articleFk = $articleFK;
     }
 
     /**
@@ -86,7 +86,7 @@ class Comment {
      * @return Comment
      */
     public function setArticleFk(?Article $articleFk): Comment {
-        $this->articleFk = $articlefk;
+        $this->articleFk = $articleFk;
         return $this;
     }
 

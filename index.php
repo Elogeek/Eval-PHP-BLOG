@@ -20,7 +20,7 @@ require_once './Controller/ArticleController.php';
 require_once './Controller/UserController.php';
 
 
-use Controller\CommentController;
+use \Model\Manager\CommentManager;
 use Controller\HomeController;
 use Controller\ArticleController;
 use Controller\UserController;
@@ -45,14 +45,6 @@ if(isset($_GET['controller'])) {
                         $controller->articles();
                         break;
 
-                    case 'update':
-                        if(isset($_GET['article'])) {
-                            $controller->updateArticle($_GET['article']);
-                        }
-                        else {
-                            $controller->updateArticle();
-                        }
-                        break;
 
                     case 'delete':
                         $controller->deleteArticle();
@@ -67,31 +59,9 @@ if(isset($_GET['controller'])) {
             }
             break;
 
-        case 'user':
-            $controller = new UserController();
 
-            if(isset($_GET['action'])) {
-                switch ($_GET['action']) {
-                    case 'email':
-                        $controller->email();
-                        break;
-
-                    case 'create':
-                        $controller->create();
-                        break;
-
-                    case 'logout':
-                        $controller->disconnect();
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-            break;
-
-        case 'commentary':
-            $controller = new CommentController();
+        case 'comment':
+            $controller = new CommentManager();
 
             if(isset($_GET['action'])) {
                 switch ($_GET['action']) {

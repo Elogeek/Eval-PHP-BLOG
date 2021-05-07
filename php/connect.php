@@ -15,9 +15,11 @@ if(isset($_GET, $_GET["name"], $_GET["password"])){
     $userManager = new UserManager();
     $user = $userManager->getUser($name, $pass);
     if(is_string($user)){
+        //error === redirectoring page connect
         header("Location: index.php?error=" . $user . "&color=red");
     }
     else{
+        //stock in the variable session
         $_SESSION["user"] = $user;
         print_r($_SESSION["user"]);
         header('Location: index.php?controller=articles');
