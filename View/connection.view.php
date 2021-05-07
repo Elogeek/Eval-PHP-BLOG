@@ -4,8 +4,8 @@
 <!--modal windom?-->
 
 
-<div id="connexionCont">
-    <div id="connexion">
+<div id="connect">
+    <div id="myConnect">
         <form action="/php/connect.php" method="get">
             <div>
                 <input type="text" name="name" placeholder="Name">

@@ -29,11 +29,8 @@ $(".btnShare").click(function(){
 
 }
 
-/*
-* Login users
- */
-
-function login() {
+/* login users*/
+function logUser() {
     let email = document.getElementById('pseudo');
     let password = document.getElementById('password');
     let xhr = new XMLHttpRequest();
