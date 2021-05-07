@@ -1,5 +1,7 @@
 <?php
-session_start();
+if($var["user"]->getAdmin() === 1) {
+    session_start();
+}
 ?>
     <div class="containerAdmin">
 

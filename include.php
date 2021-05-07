@@ -1,7 +1,5 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/View/_partials/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/View/_partials/footer.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/DB.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Manager/Traits/ManagerTrait.php';

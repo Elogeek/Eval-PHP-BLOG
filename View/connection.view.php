@@ -17,7 +17,7 @@
                 <input type="submit" value="connexion">
             </div>
         </form>
-        <form action="../newUser.php" method="post">
+        <form action="/php/register.php" method="post">
             <div>
                 <input type="text" name="name" placeholder="Name">
             </div>
@@ -30,4 +30,3 @@
         </form>
     </div>
 </div>
-<script src="./assets/js/connexion.js"></script>

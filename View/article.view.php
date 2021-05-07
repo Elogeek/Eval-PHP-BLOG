@@ -22,5 +22,3 @@
         </form>
     </div>
 </div>
-<script src="/assets/js/comment.js"></script>
-<script src="/assets/js/article.js"></script>
